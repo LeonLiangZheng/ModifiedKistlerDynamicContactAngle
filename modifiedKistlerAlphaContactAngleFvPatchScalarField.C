@@ -174,7 +174,7 @@ scalar modifiedKistlerAlphaContactAngleFvPatchScalarField::modifiedKistlerThetaD
     const scalar ucl
 ) const
 {
-    if (sigma_ <= small || muEffective_ < 0)
+    if (sigma_ <= ROOTVSMALL || muEffective_ < 0)
     {
         return clampDeg(thetaE_);
     }
@@ -215,7 +215,7 @@ modifiedKistlerAlphaContactAngleFvPatchScalarField::theta
     Uwall -= (nf & Uwall)*nf;
 
     vectorField nWall(nHat - (nf & nHat)*nf);
-    nWall /= (mag(nWall) + small);
+    nWall /= (mag(nWall) + ROOTVSMALL);
 
     const scalarField ucl(nWall & Uwall);
 
